@@ -1,3 +1,4 @@
+//Model que representa una tasca
 (function(app) {
   app.Tasca = Tasca;
 

@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Pomodoro</h1>
+    <div class="row">
+        <div class="col-md-6">
+
+            <form (ngSubmit)="afegirTasca(entrada.value)" #alumneForm="ngForm">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <label for="nom">
+                            <h3>Introdueix Tasques</h3></label>
+                    </div>
+                    <div class="col-md-7 col-sm-8 col-xs-6">
+                        <input #entrada type="text" class="form-control" required [(ngModel)]="model" ngControl="nom" #nom="ngForm">
+
+                        <div [hidden]="nom.valid" class="alert alert-danger">
+                            <!-- nom.valid és d'angular, no cal programar-ho -->
+                            Tasca Obligatòria
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-2 col-xs-3">
+                        <button type="submit" class="btn btn-primary" [disabled]="!alumneForm.form.valid"><i class="fa fa-list-ul"></i> Introdueix</button>
+                    </div>
+
+                </div>
+            </form>
+            <div class="col-md-2 col-sm-2 col-xs-3">
+                <button class="btn btn-danger" (click)="netejar()"><i class="fa fa-eraser"></i> Neteja</button>
+            </div>
+
+            <div class="row mt10 plr15">
+                <div [hidden]="!enviat" class="col-md-12">
+
+                    <h3>Llista de Tasques</h3>
+
+                    <ul id="llista-tasques" class="list-group">
+                        <div *ngFor="#tasca of llistat">
+                            <li *ngIf="!tasca.acabat" class="list-group-item list-group-item-warning" (click)="comensar(tasca)">{{ tasca.nom }}<span>{{ tasca.temps.min }}:{{ tasca.temps.sec }}</span></li>
+                            <li *ngIf="tasca.acabat" class="list-group-item list-group-item-success">{{ tasca.nom }}<span>{{ tasca.temps.min }}:{{ tasca.temps.sec }}</span></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div [hidden]="!enviat" class="col-md-6 mt10">
+            <div class="row plr15">
+                <div id="pomo" class="col-md-12">
+                    <h3>{{ tascaEnCurs.nom }}</h3>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <h2 id="temportitzador">{{ tascaEnCurs.temps.min }}:{{ tascaEnCurs.temps.sec }}</h2>
+                        </div>
+                        <div class="col-xs-9">
+                            <h1 id="control-buttons">
+                                <button *ngIf="!tascaEnCurs.paused" type="submit" class="btn btn-warning" [disabled]="!alumneForm.form.valid" (click)="play()">
+                                    <i class="fa fa-play"></i>| <i class="fa fa-pause"></i>
+                                </button>
+                                <button *ngIf="tascaEnCurs.paused" type="submit" class="btn btn-info" [disabled]="!alumneForm.form.valid" (click)="play()">
+                                    <i class="fa fa-play"></i>|  <i class="fa fa-pause"></i>
+                                </button>
+                                <button type="submit" class="btn btn-success" [disabled]="!alumneForm.form.valid" (click)="acabar()">
+                                    <i class="fa fa-check"></i>Acabat
+                                </button>
+                                <button type="submit" class="btn btn-danger" [disabled]="!alumneForm.form.valid" (click)="esborrar(tascaEnCurs)">
+                                    <i class="fa fa-remove"></i>Esborrar
+                                </button>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

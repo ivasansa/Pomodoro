@@ -1,3 +1,4 @@
+//Model que representa el temps d'una Tasca
 (function(app) {
   app.Temps = Temps;
 
