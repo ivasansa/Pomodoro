@@ -32,10 +32,11 @@
      <div [hidden]="!enviat" class="col-md-12">
 
     <h3>Llista de Tasques</h3>
+
      <ul id="llista-tasques" class="list-group">
-        <div *ngFor="#tasca of llistat" >
-            <li *ngIf="!tasca.acabat" class="list-group-item list-group-item-warning" (click)="comensar(tasca)">{{ tasca.nom }}</li>
-            <li *ngIf="tasca.acabat" class="list-group-item list-group-item-success">{{ tasca.nom }}</li>
+        <div *ngFor="#tasca of llistat">
+            <li *ngIf="!tasca.acabat" class="list-group-item list-group-item-warning" (click)="comensar(tasca)">{{ tasca.nom }}<span>{{ tasca.fechaCreacion | date:"dd/MM/yy HH:mm"  }}</span></li>
+            <li *ngIf="tasca.acabat" class="list-group-item list-group-item-success">{{ tasca.nom }}<span>{{ tasca.fechaCreacion | date:"dd/MM/yy HH:mm"  }}</span></li>
         </div>
     </ul>
          </div>
@@ -65,11 +66,20 @@
         </div>
 -->
     <div class="row plr15">
-        <div class="col-md-12">
+        <div id="pomo" class="col-md-12">
             <h3>{{ tascaEnCurs.nom }}</h3>
         </div>
         <div class="col-md-12">
-            <h2>{{ tascaEnCurs.temps.min }}:{{ tascaEnCurs.temps.sec }}</h2>
+            <div class="row">
+
+                <div class="col-xs-3"><h2 id="temportitzador">{{ tascaEnCurs.temps.min }}:{{ tascaEnCurs.temps.sec }}</h2></div>
+                <div class="col-xs-9"><h1 id="control-buttons">
+                <button type="submit" class="btn btn-info" [disabled]="!alumneForm.form.valid" (click)="play()"><i class="fa fa-play"></i>Play</button>
+                <button type="submit" class="btn btn-warning" [disabled]="!alumneForm.form.valid" (click)="pause()"><i class="fa fa-pause"></i>Pause</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!alumneForm.form.valid" (click)="acabar()"><i class="fa fa-check"></i>Acabat</button>
+                    <button type="submit" class="btn btn-danger" [disabled]="!alumneForm.form.valid" (click)="esborrar(tascaEnCurs)"><i class="fa fa-remove"></i>Esborrar</button>
+                    </h1></div>
+            </div>
         </div>
     </div>
     </div>

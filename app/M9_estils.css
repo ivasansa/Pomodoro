@@ -17,3 +17,26 @@
 #llista-tasques li {
     cursor: pointer; cursor: hand;
 }
+
+#llista-tasques li span{
+    float: right;
+}
+
+#control-buttons {
+    margin-top: 11px;
+}
+
+#control-buttons i {
+    padding-right: 5px;
+
+}
+
+#pomo {
+    margin-bottom: -8px;
+}
+
+#temportitzador {
+    float: right;
+    margin-top: 18px;
+
+}
