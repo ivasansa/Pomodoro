@@ -1,0 +1,19 @@
+ .no-style .ng-valid {
+ border-left: 1px  solid #CCC
+}
+
+ .no-style .ng-invalid {
+ border-left: 1px  solid #CCC
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+.plr15 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#llista-tasques li {
+    cursor: pointer; cursor: hand;
+}
